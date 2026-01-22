@@ -4,6 +4,7 @@
     ],
     "compilerOptions": {
         "strict": true,
+        "noEmit" :true,
         "esModuleInterop": true,
         "lib": [
             "dom",
