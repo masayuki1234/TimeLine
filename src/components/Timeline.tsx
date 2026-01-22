@@ -18,7 +18,7 @@ export const TimeLine = () => {
   const addEvent = () => {
     if (inputYear === undefined || !inputText) return; //空欄なら追加しない
     const newEvent = {
-      id: crypto.randomUUID(),
+      id: window.crypto.randomUUID(),
       year: Number(inputYear),
       text: inputText,
     };
