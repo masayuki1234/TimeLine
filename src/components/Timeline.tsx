@@ -30,7 +30,7 @@ export const TimeLine = () => {
     updatedEvents.sort((a, b) => a.year - b.year);
     //並び替えた配列をStateにセット
     setEvents(updatedEvents);
-    setInputYear();
+    setInputYear(undefined);
     setInputText(""); //入力欄をクリア
   };
   const removeEvent = (id: string) => {
