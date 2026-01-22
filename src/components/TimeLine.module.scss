@@ -148,7 +148,7 @@ p {
   }
 
   // 2. 親である .eventPoint にホバーした時の命令（出す）
-  // & は自分自身（.eventPoint）を指します
+  // & は自分自身（.eventPoint）を指す
   &:hover {
     z-index: 25;
     .label {
@@ -196,8 +196,7 @@ p {
 .historycontainer {
   font-family: "游明朝", "Yu Mincho", YuMincho, "Hiragino Mincho Pro", serif;
 }
-.tabletitle {
-}
+
 .table {
   width: 100%;
   border-collapse: collapse;
