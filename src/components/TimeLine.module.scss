@@ -1,0 +1,230 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 20px; // 画面全体のパディング
+}
+p {
+  margin: 0;
+  margin-bottom: 10%;
+  font-size: 2rem;
+}
+
+.timelineWrapper {
+  position: relative;
+  width: calc(100% - 60px); // 左右のラベル分（計60px程度）を引く
+  max-width: 90%;
+  height: 4px;
+  margin: 0 30px; // 左右に余白を作って、見切れを防止
+  margin-bottom: 10%;
+}
+
+.name {
+  width: 20%;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 2rem;
+  border-color: #ddd;
+  text-align: center;
+  border-radius: 5px;
+  border: 0;
+}
+
+.line {
+  margin-top: 200px;
+  max-width: 100%;
+  padding: 2px;
+  margin: 0 auto;
+  background-color: #233;
+  border-radius: 2px;
+}
+// 2000と2050の固定ラベル
+.limitLabel {
+  position: absolute;
+  top: 15px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  input {
+    width: 60px; // 年号が入る程度の幅
+    border: none; // 枠線を消す
+    background: transparent; // 背景を透明に
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    border-bottom: 1px dashed #999; // 下線をつけて「入力できる」ことを示す
+    outline: none; // クリック時の青い枠線を消す
+    padding: 2px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05); // ホバー時に少し色を変える
+    }
+
+    &:focus {
+      border-bottom: 2px solid #007bff; // 入力中（フォーカス時）は線を強調
+    }
+  }
+  &.start {
+    left: 0;
+    transform: translateX(-50%);
+  }
+  &.end {
+    right: 0;
+    transform: translateX(50%);
+  }
+  &.mid {
+    left: 50%;
+    transform: translateX(-50%);
+    color: #888;
+    font-size: 0.4rem;
+    pointer-events: none;
+  }
+}
+// イベントの点とテキスト（位置調整）
+.eventPoint {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    background-color: #007bff;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    cursor: pointer; // 修正
+    transition: all 0.2s;
+
+    &:hover {
+      transform: scale(1.2);
+      opacity: 1; // 修正
+    }
+  }
+
+  .label {
+    position: absolute;
+    bottom: 25px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    text-align: center;
+    padding: 2px 8px;
+    background-color: #ddd;
+    border-radius: 5px;
+
+    .year {
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+    .text {
+      font-size: 0.85rem;
+    }
+  }
+
+  // 1. ボタンの初期状態（隠す）
+  .deleteButton {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ff4757;
+    color: white;
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0; // 透明にする
+    visibility: hidden; // クリックもできないように隠す
+    transition: opacity 0.2s, visibility 0.2s;
+
+    &:hover {
+      background-color: #ff6b81;
+    }
+  }
+
+  // 2. 親である .eventPoint にホバーした時の命令（出す）
+  // & は自分自身（.eventPoint）を指します
+  &:hover {
+    z-index: 25;
+    .label {
+      background-color: #ded;
+    }
+    .deleteButton {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.inputForm {
+  margin-bottom: 50px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  input[type="number"] {
+    width: 70px;
+    padding: 5px;
+  }
+
+  input[type="text"] {
+    width: 200px;
+    padding: 5px;
+  }
+  button:disabled {
+    background-color: #808080;
+    pointer-events: none;
+  }
+
+  button {
+    padding: 5px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+.historycontainer {
+  font-family: "游明朝", "Yu Mincho", YuMincho, "Hiragino Mincho Pro", serif;
+}
+.tabletitle {
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  border-bottom: 1px solid;
+  padding: 12px;
+  text-align: center;
+}
+.tableEvent {
+  width: 500px;
+}
+td {
+  padding: 12px;
+  text-align: center;
+}
+.btntd {
+  border-bottom: 1px solid;
+  border: 0;
+}
+.tableDeleteBtn {
+  width: 50px;
+  border-radius: 4px;
+  border: 0;
+  background-color: #ddd;
+  cursor: pointer;
+  &:hover {
+    background-color: #d3d;
+  }
+}
